@@ -1,0 +1,473 @@
+package swingdemo;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Swingdemo {
+
+    private static String enteredUsername;
+    private static String enteredPassword;
+
+    public static void main(String[] args) {
+        JFrame f = new JFrame("TOURISM MANAGEMENT");
+
+               final JLabel label = new JLabel();
+        label.setBounds(150, 190, 500, 500);
+
+        final JPasswordField value = new JPasswordField();
+        value.setBounds(200, 326, 100, 30);
+
+        JLabel l1 = new JLabel("Email Address :");
+        l1.setBounds(100, 20, 300, 510);
+
+        JLabel l2 = new JLabel("Password :");
+        l2.setBounds(125, 75, 300, 531);
+
+        JLabel l3 = new JLabel(" Tourism Management ");
+        l3.setBounds(100, 100, 400, 60);
+        Font labelFont = new Font(l3.getFont().getName(), Font.BOLD, 21);
+        l3.setFont(labelFont);
+
+        JButton b = new JButton("Login");
+        b.setBounds(175, 380, 80, 30);
+
+        final JTextField text = new JTextField();
+        text.setBounds(200, 262, 100, 30);
+
+        f.add(value);
+        f.add(l1);
+        f.add(label);
+        f.add(l2);
+        f.add(l3);
+        f.add(b);
+        f.add(text);
+
+        f.setSize(470, 685);
+        f.setLayout(null);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                enteredUsername = text.getText();
+                enteredPassword = new String(value.getPassword());
+
+                f.dispose();
+                PocketProMenu();
+            }
+        });
+    }
+
+    private static void PocketProMenu() {
+        JFrame a = new JFrame("Tourism Management");
+
+        JLabel l1 = new JLabel(" Menu ");
+        l1.setBounds(200, 50, 400, 100);
+        Font labelFont = new Font(l1.getFont().getName(), Font.BOLD, 18);
+        l1.setFont(labelFont);
+
+        JButton Hotelmanagement = new JButton("Hotel Selection");
+        Hotelmanagement.setBounds(55, 180, 170, 50);
+
+
+        JButton Bookingmanagement = new JButton("Booking Selection");
+        Bookingmanagement.setBounds(250, 180, 170, 50);
+        a.add(Bookingmanagement);
+
+        JButton FoodOrderButton = new JButton("Food Order Process");
+        FoodOrderButton.setBounds(55, 280, 170, 50);
+
+        JButton AddingTourismplace = new JButton("Adding Tourismplace");
+        AddingTourismplace.setBounds(250, 280, 170, 50);
+
+        JButton PaymentButton = new JButton("Payment Process");
+        PaymentButton.setBounds(55, 380, 170, 50);
+
+        JButton Transportationmanagement = new JButton("Vehicle Management");
+        Transportationmanagement.setBounds(250, 380, 170, 50);
+
+        a.add(l1);
+        a.add(Hotelmanagement);
+        a.add(Bookingmanagement);
+        a.add(FoodOrderButton);
+        a.add(AddingTourismplace);
+        a.add(PaymentButton);
+        a.add(Transportationmanagement);
+
+        a.setSize(470, 685);
+        a.setLayout(null);
+        a.setVisible(true);
+        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Hotelmanagement.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                Hotelmanagement();
+            }
+        });
+
+
+        Bookingmanagement.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                BookingSelection(enteredUsername, enteredPassword);
+            }
+        });
+
+        FoodOrderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                FoodOrderProcess();
+            }
+        });
+
+        AddingTourismplace.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                AddingTourismplace();
+            }
+        });
+
+        PaymentButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                PaymentProcess();
+            }
+        });
+
+        Transportationmanagement.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                VehicleManagement();
+            }
+        });
+    }
+
+    private static void Hotelmanagement() {
+        JFrame a = new JFrame("Hotelmanagement");
+
+        JLabel l1 = new JLabel(" Hotelmanagement ");
+        l1.setBounds(150, 5, 400, 100);
+        Font labelFont = new Font(l1.getFont().getName(), Font.BOLD, 18);
+        l1.setFont(labelFont);
+
+        String data[][] = {{"City Hotel"}, {"Sea Pearl Hotel"}, {"Best Western Hote"}, {"Pan Pacific Hotel"}, {"Noor Jahan Hotel"}, {"Ocean Paradise Hotel"}, {"Long Beach Hotel"}, {"Seagull Hotel"}, {"Green House Hotel"}, {"Grand Plaza Hotel"}, {"Fars Hotel"}};
+        String column[] = {"All Hotel"};
+
+        JTable jt = new JTable(data, column);
+        jt.setBounds(30, 1, 400, 250);
+
+        JScrollPane sp = new JScrollPane(jt);
+        sp.setBounds(30, 100, 400, 300);
+        JButton b = new JButton("Submit");
+        a.setBounds(175, 500, 80, 40);
+
+        a.getContentPane().add(sp);
+
+        String[] Hotelmanagement = {"City Hotel", "Sea Pearl Hotel", "Best Western Hote", "Pan Pacific Hotel", "Noor Jahan Hotel", "Ocean Paradise Hotel", "Long Beach Hotel", "Seagull Hotel", "Green House Hotel", "Grand Plaza Hotel", "Fars Hotel"};
+        JComboBox<String> HotelmanagementComboBox = new JComboBox<>(Hotelmanagement);
+        HotelmanagementComboBox.setBounds(30, 445, 150, 30);
+        a.getContentPane().add(HotelmanagementComboBox);
+        a.add(b);
+
+        a.setSize(470, 685);
+        a.setLayout(null);
+        a.setVisible(true);
+        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                a.dispose();
+                submit1();
+            }
+        });
+    }
+
+    private static void FoodOrderProcess() {
+        JFrame a = new JFrame("Food Order Process");
+        JLabel l1 = new JLabel(" Food Order Process ");
+        l1.setBounds(150, 5, 400, 100);
+        Font labelFont = new Font(l1.getFont().getName(), Font.BOLD, 18);
+        l1.setFont(labelFont);
+
+        FoodOrderPanel foodOrderPanel = new FoodOrderPanel();
+        foodOrderPanel.setVisible(true);
+
+        a.add(l1);
+        a.add(foodOrderPanel);
+        a.setSize(400, 400);
+        a.setLayout(null);
+        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        a.setVisible(true);
+    }
+
+    public static class FoodOrderPanel extends JFrame implements ActionListener {
+
+        JLabel l;
+        JCheckBox cb1, cb2, cb3, cb4;
+        JButton b;
+
+        FoodOrderPanel() {
+            l = new JLabel("Food Ordering System");
+            l.setBounds(50, 50, 300, 20);
+            cb1 = new JCheckBox("Fried Rice..........300");
+            cb1.setBounds(100, 100, 150, 20);
+            cb2 = new JCheckBox("Burger..........250");
+            cb2.setBounds(100, 150, 150, 20);
+            cb3 = new JCheckBox("Colddrinks..........50");
+            cb3.setBounds(100, 200, 150, 20);
+            cb4 = new JCheckBox("Noodles..........350");
+            cb4.setBounds(100, 250, 150, 20);
+            b = new JButton("Order");
+            b.setBounds(100, 300, 80, 30);
+            b.addActionListener(this);
+            add(l);
+            add(cb1);
+            add(cb2);
+            add(cb3);
+            add(cb4);
+            add(b);
+            setSize(400, 400);
+            setLayout(null);
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            float amount = 0;
+            String msg = "";
+            if (cb1.isSelected()) {
+                amount += 300;
+                msg = "Fried Rice: 300\n";
+            }
+            if (cb2.isSelected()) {
+                amount += 250;
+                msg += "Burger: 250\n";
+            }
+            if (cb3.isSelected()) {
+                amount += 50;
+                msg += "Colddrinks: 50\n";
+            }
+            if (cb4.isSelected()) {
+                amount += 350;
+                msg += "Noodles: 350\n";
+            }
+            msg += "-----------------\n";
+            JOptionPane.showMessageDialog(this, msg + "Total: " + amount);
+        }
+    }
+
+    private static void submit1() {
+        // Handle the submit action
+    }
+
+    private static void PaymentProcess() {
+        JFrame a = new JFrame("Payment Process");
+        JLabel l1 = new JLabel(" Payment Process ");
+        l1.setBounds(150, 5, 400, 100);
+        Font labelFont = new Font(l1.getFont().getName(), Font.BOLD, 18);
+        l1.setFont(labelFont);
+
+        PaymentPanel paymentPanel = new PaymentPanel();
+        paymentPanel.setVisible(true);
+
+        a.add(l1);
+        a.add(paymentPanel);
+        a.setSize(400, 400);
+        a.setLayout(null);
+        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        a.setVisible(true);
+    }
+
+    public static class PaymentPanel extends JFrame implements ActionListener {
+
+        JLabel l111;
+        JCheckBox cb11, cb12, cb13;
+        JButton c;
+
+        PaymentPanel() {
+            l111 = new JLabel("Payment process");
+            l111.setBounds(50, 50, 300, 20);
+            cb11 = new JCheckBox("BKASH");
+            cb11.setBounds(100, 100, 150, 20);
+            cb12 = new JCheckBox("NAGAD");
+            cb12.setBounds(100, 150, 150, 20);
+            cb13 = new JCheckBox("CREDITCARD");
+            cb13.setBounds(100, 200, 150, 20);
+            c = new JButton("SELECT");
+            c.setBounds(100, 250, 80, 30);
+            c.addActionListener(this);
+            add(l111);
+            add(cb11);
+            add(cb12);
+            add(cb13);
+            add(c);
+            setSize(400, 400);
+            setLayout(null);
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            float amount = 0;
+            String msg = "";
+            if (cb11.isSelected()) {
+                amount += 3000;
+                msg = "BKASH 300\n";
+            }
+            if (cb12.isSelected()) {
+                amount += 2500;
+                msg += "NAGAD 250\n";
+            }
+            if (cb13.isSelected()) {
+                amount += 3500;
+                msg += "CREDITCARD: 350\n";
+            }
+            msg += "-----------------\n";
+            JOptionPane.showMessageDialog(this, msg + "Total: " + amount);
+        }
+    }
+
+   
+
+private static void AddingTourismplace() {
+        JFrame f3 = new JFrame("Adding tourism place");
+        JLabel el = new JLabel(" place ");
+        el.setBounds(150, 5, 400, 100);
+        Font labelFont = new Font(el.getFont().getName(), Font.BOLD, 18);
+        el.setFont(labelFont);
+
+        String data[][] = {{"Sundarban Mangrove Forest"}, {"Cox's Bazar"}, {"Kuakata"}, {"Rangamati"}, {"ST.Martin Island"}, {"BandarBan"}, {"Mosque City Bagerhat"}, {"NandiHills"}, {"Chandpur Budha Bihar"}, {"Green City Land"}, {"Madhobpur Lake"}};
+        String column[] = {"Location"};
+
+        JTable jt = new JTable(data, column);
+        jt.setBounds(30, 1, 400, 250);
+
+        JScrollPane sp = new JScrollPane(jt);
+        sp.setBounds(30, 100, 400, 300);
+        JButton b = new JButton("Submit");
+        f3.setBounds(175, 500, 80, 40);
+
+        f3.getContentPane().add(sp);
+
+        String[] AddingTourismplace = {"Sundarban Mangrove Forest", "Cox's Bazar", "Kuakata", "Rangamati", "ST.Martin Island", "BandarBan", "Mosque City Bagerhat", "NandiHills", "Chandpur Budha Bihar", "Green City Land", "Madhobpur Lake"};
+        JComboBox<String> AddingTourismplaceComboBox = new JComboBox<>(AddingTourismplace);
+        AddingTourismplaceComboBox.setBounds(30, 445, 150, 30);
+        f3.getContentPane().add(AddingTourismplaceComboBox);
+        f3.add(b);
+
+        f3.setSize(470, 685);
+        f3.setLayout(null);
+        f3.setVisible(true);
+        f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent g) {
+                f3.dispose();
+                submit1();
+            }
+        });
+    }
+
+
+    private static void BookingSelection(String username, String password) {
+        JFrame f = new JFrame("Booking Selection");
+        final JLabel label = new JLabel();
+        label.setBounds(20, 150, 200, 50);
+
+        label.setText("Username: " + username + ", Password: " + password);
+
+        final JPasswordField value = new JPasswordField();
+        value.setBounds(100, 75, 100, 30);
+        JLabel l1 = new JLabel("EmailID:");
+        l1.setBounds(20, 20, 80, 30);
+        JLabel l2 = new JLabel("Pass:");
+        l2.setBounds(20, 75, 80, 30);
+        JButton b = new JButton("Enter");
+        b.setBounds(100, 120, 80, 30);
+        final JTextField text = new JTextField();
+        text.setBounds(100, 20, 100, 30);
+        f.add(value);
+        f.add(l1);
+        f.add(label);
+        f.add(l2);
+        f.add(b);
+        f.add(text);
+        f.setSize(300, 300);
+        f.setLayout(null);
+        f.setVisible(true);
+
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String data = "Username " + text.getText();
+                data += ", Password: " + new String(value.getPassword());
+                label.setText(data);
+            }
+        });
+    }
+
+    private static void Booking_check() {
+        JFrame f2 = new JFrame("Booking Selection");
+
+        f2.setSize(470, 685);
+        f2.setLayout(null);
+        f2.setVisible(true);
+        f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    private static void VehicleManagement() {
+        JFrame d = new JFrame("Vehiclemanagement");
+        JLabel l1 = new JLabel(" Vehiclemanagement ");
+        l1.setBounds(150, 5, 400, 100);
+        Font labelFont = new Font(l1.getFont().getName(), Font.BOLD, 18);
+        l1.setFont(labelFont);
+
+        CheckNow checkNow = new CheckNow();
+        checkNow.setVisible(true);
+
+        d.add(l1);
+        d.add(checkNow);
+        d.setSize(400, 400);
+        d.setLayout(null);
+        d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        d.setVisible(true);
+    }
+public static class CheckNow extends JFrame implements ActionListener {
+
+        JRadioButton rb1, rb2;
+        JButton z;
+
+        CheckNow() {
+            rb1 = new JRadioButton("Bus");
+            rb1.setBounds(125, 70, 130, 70);
+            rb2 = new JRadioButton("Car");
+            rb2.setBounds(125, 120, 130, 70);
+            ButtonGroup bg = new ButtonGroup();
+            bg.add(rb1);
+            bg.add(rb2);
+            z = new JButton("click");
+            z.setBounds(120, 200, 80, 30);
+            z.addActionListener(this);
+            add(rb1);
+            add(rb2);
+            add(z);
+            setSize(400, 400);
+            setLayout(null);
+            setVisible(true);
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            if (rb1.isSelected()) {
+                JOptionPane.showMessageDialog(this, "Bus Selected.");
+            }
+            if (rb2.isSelected()) {
+                JOptionPane.showMessageDialog(this, "Car Selected.");
+            }
+        }
+    }
+
+    }
